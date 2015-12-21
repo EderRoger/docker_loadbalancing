@@ -1,0 +1,10 @@
+- hosts: all
+  sudo: True
+  user: vagrant
+  tasks:
+    - name: "Get latest  Docker package"
+      shell: curl -sSL https://get.docker.com/ | sh
+
+    - name: "add apt-key"
+      shell: curl -sSL https://get.docker.com/gpg | sudo apt-key add -
+
