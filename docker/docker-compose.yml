@@ -1,11 +1,14 @@
 node1:
   build: /vagrant/docker/nodes
+  restart: always
 
 node2:
   build: /vagrant/docker/nodes
+  restart: always
 
 haproxy:
   build: /vagrant/docker/haproxy
+  restart: always
   links:
       - node1
       - node2

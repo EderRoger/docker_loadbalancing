@@ -24,7 +24,7 @@
       file: path=/usr/local/bin/docker-compose mode="u+rwx,g+rx,o+x"
 
     - name: "Build and Up docker compose"
-      shell: cd /vagrant/docker/ && docker-compose build && docker-compose up -d }}
+      shell: cd /vagrant/docker/ && docker-compose up -d
 
   handlers:
     - name: restart docker
