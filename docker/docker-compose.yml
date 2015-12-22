@@ -1,0 +1,15 @@
+node1:
+  build: /vagrant/docker/nodes
+
+node2:
+  build: /vagrant/docker/nodes
+
+haproxy:
+  build: /vagrant/docker/haproxy
+  links:
+      - node1
+      - node2
+  expose:
+    - "80"
+    - "443"
+

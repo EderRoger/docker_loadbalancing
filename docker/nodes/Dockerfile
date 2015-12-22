@@ -1,4 +1,4 @@
-FROM ubuntu 14:04
+FROM ubuntu:14.04
 
 MAINTAINER eder.roger.souza@gmail.com
 
@@ -18,6 +18,7 @@ ADD ./nginx.conf /etc/nginx/nginx.conf
 WORKDIR /var/www/html/website
 
 RUN git clone https://github.com/jweissig/episode-47
+
 
 ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"]
 

@@ -8,3 +8,21 @@
     - name: "add apt-key"
       shell: curl -sSL https://get.docker.com/gpg | sudo apt-key add -
 
+    - name: "configure docker"
+      copy: content='DOCKER_OPTS=""' dest=/etc/default/docker
+      notify: restart docker
+
+    - group: name=docker state=present
+
+    - name: "allow vagrant user to run docker commands without sudo"
+      user: name=vagrant append=yes groups=docker
+
+    - name: "Install docker-compose"
+      shell: bash -c "curl -L https://github.com/docker/compose/releases/download/1.4.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose"
+
+    - name: "Grant permissions"
+      file: path=/usr/local/bin/docker-compose mode="u+rwx,g+rx,o+x"
+
+  handlers:
+    - name: restart docker
+      command: service docker restart
