@@ -17,7 +17,6 @@ VOLUME ["/haproxy-override"]
 
 # Add files.
 ADD haproxy.cfg /etc/haproxy/haproxy.cfg
-# ADD haproxy /etc/default/haproxy
 ADD start.bash /haproxy-start
 
 RUN sed -i 's/^ENABLED=.*/ENABLED=1/' /etc/default/haproxy
