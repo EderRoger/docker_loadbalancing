@@ -21,11 +21,17 @@ haproxy:
     - "80:80"
     - "443:443"
 
+elasticsearch:
+  image: elasticsearch
+  expose:
+   - "9300"
+   - "9200"
+
 logstash:
    image: logstash
    volumes: /logs:/tmp
    command: logstash -f /tmp/logstash.conf
    links:
+    - elasticsearch
     - node1
     - node2
-
