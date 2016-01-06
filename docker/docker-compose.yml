@@ -1,9 +1,11 @@
 node1:
   build: /vagrant/docker/nodes
+  volumes: /var/log/nginx
   restart: always
 
 node2:
   build: /vagrant/docker/nodes
+  volumes: /var/log/nginx
   restart: always
 
 haproxy:
@@ -18,3 +20,12 @@ haproxy:
   ports:
     - "80:80"
     - "443:443"
+
+logstash:
+   image: logstash
+   volumes: /logs:/tmp
+   command: logstash -f /tmp/logstash.conf
+   links:
+    - node1
+    - node2
+
