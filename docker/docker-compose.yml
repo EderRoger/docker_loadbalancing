@@ -1,11 +1,13 @@
 node1:
   build: /vagrant/docker/nodes
-  volumes: /var/log/nginx
+  volumes:
+    - /var/log/nginx
   restart: always
 
 node2:
   build: /vagrant/docker/nodes
-  volumes: /var/log/nginx
+  volumes:
+    - /var/log/nginx
   restart: always
 
 haproxy:
@@ -25,14 +27,16 @@ elasticsearch:
   image: elasticsearch
   command: elasticsearch -Des.network.host=0.0.0.0
   restart: always
-  port:
+  ports:
     - "9300:9300"
     - "9200:9200"
 
 logstash:
    image: logstash
-   volumes: /logs:/tmp
+   volumes:
+     - /logs:/tmp
    command: /opt/logstash/bin/logstasg -f /tmp/logstash.conf
+   restart: always
    links:
     - elasticsearch
     - node1
