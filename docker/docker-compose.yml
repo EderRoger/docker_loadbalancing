@@ -23,14 +23,16 @@ haproxy:
 
 elasticsearch:
   image: elasticsearch
-  expose:
-   - "9300"
-   - "9200"
+  command: elasticsearch -Des.network.host=0.0.0.0
+  restart: always
+  port:
+    - "9300:9300"
+    - "9200:9200"
 
 logstash:
    image: logstash
    volumes: /logs:/tmp
-   command: logstash -f /tmp/logstash.conf
+   command: /opt/logstash/bin/logstasg -f /tmp/logstash.conf
    links:
     - elasticsearch
     - node1
@@ -38,6 +40,7 @@ logstash:
 
 kibana:
   image: kibana
+  restart: always
   ports:
     - "5601:5601"
   links:
