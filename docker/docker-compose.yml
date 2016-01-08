@@ -1,13 +1,9 @@
 node1:
   build: /vagrant/docker/nodes
-  volumes:
-    - /var/log/nginx
   restart: always
 
 node2:
   build: /vagrant/docker/nodes
-  volumes:
-    - /var/log/nginx
   restart: always
 
 haproxy:
@@ -34,13 +30,14 @@ elasticsearch:
 logstash:
    image: logstash
    volumes:
-     - /logs:/tmp
-   command: /opt/logstash/bin/logstasg -f /tmp/logstash.conf
+     - ./logs:/tmp
+   volumes_from:
+     - node1
+     - node2
+   command: /opt/logstash/bin/logstash -f /tmp/logstash.conf
    restart: always
    links:
     - elasticsearch
-    - node1
-    - node2
 
 kibana:
   image: kibana

@@ -19,6 +19,7 @@ WORKDIR /var/www/html/website
 
 RUN git clone https://github.com/jweissig/episode-47
 
+VOLUME [ "/var/log/nginx" ]
 
 ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"]
 
