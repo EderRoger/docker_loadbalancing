@@ -7,11 +7,11 @@ Show one example with HAProxy container balancing other web applications
 
 # Test it!
 
-``open web browser/;  http://10.0.0.115``
+``open web browser  http://10.0.0.115``
 
 # HAProxy stats ! See our nodes
 
-``open web browser/;  http://10.0.0.115/haproxy?stats``
+``open web browser http://10.0.0.115/haproxy?stats``
 
 # Gerenate logs with apache benchmark
 
@@ -19,6 +19,6 @@ Show one example with HAProxy container balancing other web applications
 
 # Open kibana  to check nginx default access log
 
-``open web browser/;  http://10.0.0.115/5601``
+``open web browser  http://10.0.0.115/5601``
 
 # Have fun!!
