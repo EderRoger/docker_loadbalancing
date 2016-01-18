@@ -21,4 +21,4 @@ Show one example with HAProxy container balancing other web applications
 
 ``open web browser  http://10.0.0.115/5601``
 
-# Have fun!!
+# Have fun :-)
